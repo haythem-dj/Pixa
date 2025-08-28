@@ -1,19 +1,6 @@
 #pragma once
 
-#include "Common/Defines.hpp"
+#include "Pixa/Common/Defines.hpp"
 
-#include <string>
-
-namespace Pixa
-{
-    class PIXA_API PixaTest
-    {
-    public:
-        PixaTest(const std::string& test);
-
-        void Talk();
-
-    private:
-        std::string mTest;
-    };
-}
+#include "Pixa/Core/Engine.hpp"
+#include "Pixa/Core/Application.hpp"
