@@ -3,6 +3,7 @@
 #include "Pixa/Common/Defines.hpp"
 
 #include "Pixa/Core/Logger.hpp"
+#include "Pixa/Core/Window.hpp"
 
 namespace Pixa
 {
@@ -15,19 +16,26 @@ namespace Pixa
         Engine(const Engine&) = delete;
         Engine& operator=(const Engine&) = delete;
 
+        void Update(f32 dt);
+        void Render();
+
         void Run(Application* application);
 
         static Engine& GetInstance();
 
-        Logger& GetLogger() { return mLogger; }
+        void Stop() { mRunning = false; }
+
+        const Logger& GetLogger() const { return mLogger; }
+        const Window& GetWindow() const { return mWindow; }
 
     private:
         Engine();
 
     private:
-        b8 mIsRunning;
+        b8 mRunning = false;
 
         Logger mLogger;
+        Window mWindow;
 
     private:
         static Engine* mInstance;

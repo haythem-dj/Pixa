@@ -19,7 +19,7 @@ namespace Pixa
         ~Logger();
 
         template<typename... Args>
-        void Log(LogType logType, spdlog::format_string_t<Args...> message, Args&&... args)
+        void Log(LogType logType, spdlog::format_string_t<Args...> message, Args&&... args) const
         {
             switch (logType)
             {
@@ -52,7 +52,7 @@ namespace Pixa
 
     private:
         str mName;
-        std::shared_ptr<spdlog::logger> mLogger;
+        std::shared_ptr<spdlog::logger> mLogger = nullptr;
         
     };
 }

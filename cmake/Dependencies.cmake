@@ -10,11 +10,21 @@ FetchContent_Declare(
     GIT_SHALLOW TRUE
 )
 
-FetchContent_GetProperties(spdlog)
-if(NOT spdlog_POPULATED)
-    message(STATUS "[deps] Downloading spdlog...")
-    FetchContent_MakeAvailable(spdlog)
-    message(STATUS "[deps] Finished setting up spdlog")
-else()
-    message(STATUS "[deps] Using cached spdlog at ${spdlog_SOURCE_DIR}")
-endif()
+message(STATUS "[deps] Getting spdlog")
+FetchContent_MakeAvailable(spdlog)
+
+set(SDL_SHARED ON CACHE BOOL "" FORCE)
+set(SDL_STATIC OFF CACHE BOOL "" FORCE)
+set(SDL_TESTS OFF CACHE BOOL "" FORCE)
+set(SDL_EXAMPLES OFF CACHE BOOL "" FORCE)
+
+FetchContent_Declare(
+    SDL3
+    GIT_REPOSITORY https://github.com/libsdl-org/SDL
+    GIT_TAG release-3.2.20
+    SOURCE_DIR ${CMAKE_SOURCE_DIR}/external/SDL3
+    GIT_SHALLOW TRUE
+)
+
+message(STATUS "[deps] Getting SDL3")
+FetchContent_MakeAvailable(SDL3)

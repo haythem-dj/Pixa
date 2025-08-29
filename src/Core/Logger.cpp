@@ -5,7 +5,7 @@
 namespace Pixa
 {
     Logger::Logger(const str& name)
-        :mName(name), mLogger(nullptr)
+        :mName(name)
     {
         auto sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
         sink->set_pattern("[%Y-%m-%d %H:%M:%S] [" + mName + "] [%^%l%$] %v");

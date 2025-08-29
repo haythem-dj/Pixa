@@ -1,6 +1,7 @@
 set(LIB_SRCS
     Core/Engine.cpp
     Core/Logger.cpp
+    Core/Window.cpp
 )
 
 add_library(Pixa SHARED ${LIB_SRCS})
@@ -16,6 +17,10 @@ target_compile_options(Pixa PRIVATE
 
 target_compile_definitions(Pixa PRIVATE
     PIXA_EXPORT
+)
+
+target_link_libraries(Pixa PRIVATE
+    SDL3::SDL3
 )
 
 target_link_libraries(Pixa PUBLIC

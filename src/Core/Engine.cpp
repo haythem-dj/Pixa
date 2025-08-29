@@ -8,9 +8,10 @@ namespace Pixa
     Engine* Engine::mInstance = nullptr;
 
     Engine::Engine()
-        :mIsRunning(false), mLogger("Pixa")
+        :mLogger("Pixa")
     {
-        mIsRunning = true;
+        if (!mWindow) return;
+        mRunning = true;
     }
 
     Engine::~Engine()
@@ -24,6 +25,14 @@ namespace Pixa
         return *mInstance;
     }
 
+    void Engine::Update(f32 dt)
+    {
+        mWindow.Update();
+    }
+
+    void Engine::Render()
+    {}
+
     void Engine::Run(Application* application)
     {
         if (!application)
@@ -34,9 +43,10 @@ namespace Pixa
 
         application->Init();
 
-        while(mIsRunning)
+        while(mRunning)
         {
-
+            Update(1.f);
+            Render();
         }
 
         application->Shutdown();
