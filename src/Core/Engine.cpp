@@ -1,7 +1,7 @@
+#include "Pixa/pch.hpp"
+
 #include "Pixa/Core/Engine.hpp"
 #include "Pixa/Core/Application.hpp"
-
-#include <iostream>
 
 namespace Pixa
 {
@@ -37,7 +37,7 @@ namespace Pixa
     {
         if (!application)
         {
-            std::cerr << "application is nullptr\n";
+            PIXA_ERROR("application is null.");
             return;
         }
 

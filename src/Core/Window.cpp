@@ -1,3 +1,5 @@
+#include "Pixa/pch.hpp"
+
 #include "Pixa/Core/Window.hpp"
 #include "Pixa/Core/Engine.hpp"
 
