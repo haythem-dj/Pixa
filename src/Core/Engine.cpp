@@ -8,9 +8,8 @@ namespace Pixa
     Engine* Engine::mInstance = nullptr;
 
     Engine::Engine()
-        :mIsRunning(false)
+        :mIsRunning(false), mLogger("Pixa")
     {
-
         mIsRunning = true;
     }
 

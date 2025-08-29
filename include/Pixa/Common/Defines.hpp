@@ -1,6 +1,7 @@
 #pragma once
 
 #include <stdint.h>
+#include <string>
 
 typedef uint8_t u8;
 typedef uint16_t u16;
@@ -19,6 +20,8 @@ typedef bool b8;
 typedef float f32;
 typedef double f64;
 
+typedef std::string str;
+
 #if defined(_WIN32) || defined(_WIN64)
     #define PIXA_PLATFORM_WINDOWS
 #else
@@ -34,7 +37,7 @@ typedef double f64;
 #endif
 
 #if !defined(NDEBUG) || defined(_DEBUG)
-    #define PIXA_DEBUG
+    #define PIXA_CONFIG_DEBUG
 #else
-    #define PIXA_RELEASE
+    #define PIXA_CONFIG_RELEASE
 #endif

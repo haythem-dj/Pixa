@@ -2,6 +2,8 @@
 
 #include "Pixa/Common/Defines.hpp"
 
+#include "Pixa/Core/Logger.hpp"
+
 namespace Pixa
 {
     class Application;
@@ -17,11 +19,15 @@ namespace Pixa
 
         static Engine& GetInstance();
 
+        Logger& GetLogger() { return mLogger; }
+
     private:
         Engine();
 
     private:
         b8 mIsRunning;
+
+        Logger mLogger;
 
     private:
         static Engine* mInstance;

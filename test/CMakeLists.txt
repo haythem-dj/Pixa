@@ -11,7 +11,12 @@ target_compile_options(TestPixa PRIVATE
 )
 
 add_custom_command(TARGET TestPixa POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E echo "Copying Pixa shared library to executable folder" 
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
         "$<TARGET_FILE:Pixa>"
+        "$<TARGET_FILE_DIR:TestPixa>"
+    COMMAND ${CMAKE_COMMAND} -E echo "Copying spdlog shared library to executable folder" 
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "$<TARGET_FILE:spdlog>"
         "$<TARGET_FILE_DIR:TestPixa>"
 )
