@@ -23,6 +23,7 @@ target_precompile_headers(Pixa PRIVATE ${CMAKE_SOURCE_DIR}/include/Pixa/pch.hpp)
 
 target_link_libraries(Pixa PRIVATE
     SDL3::SDL3
+    glad
 )
 
 target_link_libraries(Pixa PUBLIC

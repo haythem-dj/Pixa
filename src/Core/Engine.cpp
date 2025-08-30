@@ -1,16 +1,21 @@
 #include "Pixa/pch.hpp"
-
 #include "Pixa/Core/Engine.hpp"
 #include "Pixa/Core/Application.hpp"
+
+#include <glad/gl.h>
 
 namespace Pixa
 {
     Engine* Engine::mInstance = nullptr;
 
     Engine::Engine()
-        :mLogger("Pixa")
     {
-        if (!mWindow) return;
+        mLogger = std::make_unique<Logger>("Pixa");
+        mWindow = std::make_unique<Window>();
+        if (!*mWindow) return;
+
+        glClearColor(1.f, 1.f, 1.f, 1.f);
+        
         mRunning = true;
     }
 
@@ -27,11 +32,16 @@ namespace Pixa
 
     void Engine::Update(f32 dt)
     {
-        mWindow.Update();
+        mWindow->Update();
+        mApplication->Update(dt);
     }
 
     void Engine::Render()
-    {}
+    {
+        mApplication->Render();
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        mWindow->SwapBuffers();
+    }
 
     void Engine::Run(Application* application)
     {
@@ -41,7 +51,9 @@ namespace Pixa
             return;
         }
 
-        application->Init();
+        mApplication = application;
+
+        mApplication->Init();
 
         while(mRunning)
         {
@@ -49,6 +61,6 @@ namespace Pixa
             Render();
         }
 
-        application->Shutdown();
+        mApplication->Shutdown();
     }
 }

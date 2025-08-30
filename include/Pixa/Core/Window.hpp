@@ -24,9 +24,11 @@ namespace Pixa
         explicit operator bool() const { return mWindow != nullptr; }
 
         void Update();
+        void SwapBuffers();
     
     private:
         void* mWindow = nullptr;
+        void* mContext = nullptr;
     
     };
 }

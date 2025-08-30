@@ -2,13 +2,14 @@
 
 #include "Pixa/Common/Defines.hpp"
 
+#include "Pixa/Core/Application.hpp"
 #include "Pixa/Core/Logger.hpp"
 #include "Pixa/Core/Window.hpp"
 
+#include <memory>
+
 namespace Pixa
 {
-    class Application;
-
     class PIXA_API Engine
     {
     public:
@@ -25,8 +26,8 @@ namespace Pixa
 
         void Stop() { mRunning = false; }
 
-        const Logger& GetLogger() const { return mLogger; }
-        const Window& GetWindow() const { return mWindow; }
+        const std::unique_ptr<Logger>& GetLogger() const { return mLogger; }
+        const std::unique_ptr<Window>& GetWindow() const { return mWindow; }
 
     private:
         Engine();
@@ -34,8 +35,10 @@ namespace Pixa
     private:
         b8 mRunning = false;
 
-        Logger mLogger;
-        Window mWindow;
+        Application* mApplication = nullptr;
+
+        std::unique_ptr<Logger> mLogger;
+        std::unique_ptr<Window> mWindow;
 
     private:
         static Engine* mInstance;

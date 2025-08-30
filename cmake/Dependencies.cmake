@@ -1,3 +1,4 @@
+# =======================================================================
 set(SPDLOG_BUILD_SHARED ON CACHE BOOL "" FORCE)
 set(SPDLOG_BUILD_STATIC OFF CACHE BOOL "" FORCE)
 set(SPDLOG_HEADER_ONLY OFF CACHE BOOL "" FORCE)
@@ -13,6 +14,7 @@ FetchContent_Declare(
 message(STATUS "[deps] Getting spdlog")
 FetchContent_MakeAvailable(spdlog)
 
+# =======================================================================
 set(SDL_SHARED ON CACHE BOOL "" FORCE)
 set(SDL_STATIC OFF CACHE BOOL "" FORCE)
 set(SDL_TESTS OFF CACHE BOOL "" FORCE)
@@ -28,3 +30,23 @@ FetchContent_Declare(
 
 message(STATUS "[deps] Getting SDL3")
 FetchContent_MakeAvailable(SDL3)
+
+# =======================================================================
+FetchContent_Declare(
+    glad
+    GIT_REPOSITORY https://github.com/Dav1dde/glad
+    GIT_TAG v2.0.8
+    SOURCE_DIR ${CMAKE_SOURCE_DIR}/external/glad
+    GIT_SHALLOW TRUE
+)
+
+message(STATUS "[deps] Getting glad")
+FetchContent_MakeAvailable(glad)
+
+add_subdirectory(${CMAKE_SOURCE_DIR}/external/glad/cmake)
+glad_add_library(glad SHARED API gl:core=4.5)
+set_target_properties(glad PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin/$<CONFIG>/_deps/glad-build"
+    ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin/$<CONFIG>/_deps/glad-build"
+    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin/$<CONFIG>/_deps/glad-build"
+)

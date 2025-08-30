@@ -1,5 +1,4 @@
 #include "Pixa/pch.hpp"
-
 #include "Pixa/Core/Logger.hpp"
 
 #include <spdlog/sinks/stdout_color_sinks.h>

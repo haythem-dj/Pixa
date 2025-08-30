@@ -23,4 +23,9 @@ add_custom_command(TARGET TestPixa POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
         "$<TARGET_FILE:SDL3::SDL3>"
         "$<TARGET_FILE_DIR:TestPixa>"
+
+    COMMAND ${CMAKE_COMMAND} -E echo "Copying glad shared library to executable folder" 
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "$<TARGET_FILE:glad>"
+        "$<TARGET_FILE_DIR:TestPixa>"
 )
