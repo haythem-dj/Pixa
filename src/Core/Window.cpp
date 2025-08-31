@@ -3,6 +3,8 @@
 #include "Pixa/Core/Window.hpp"
 #include "Pixa/Core/Engine.hpp"
 
+#include "Pixa/Input/Input.hpp"
+
 #include <SDL3/SDL.h>
 #include <glad/gl.h>
 
@@ -69,9 +71,38 @@ namespace Pixa
         SDL_Event event;
         while (SDL_PollEvent(&event))
         {
-            if (event.type == SDL_EVENT_QUIT)
+            switch (event.type)
             {
+            case SDL_EVENT_QUIT:
                 Engine::GetInstance().Stop();
+                break;
+
+            case SDL_EVENT_KEY_DOWN:
+                ProcessKeys((Key)event.key.key, true);
+                break;
+
+            case SDL_EVENT_KEY_UP:
+                ProcessKeys((Key)event.key.key, false);
+                break;
+            
+            case SDL_EVENT_MOUSE_BUTTON_DOWN:
+                ProcessMouse((MouseButton)event.key.key, true);
+                break;
+
+            case SDL_EVENT_MOUSE_BUTTON_UP:
+                ProcessMouse((MouseButton)event.key.key, false);
+                break;
+
+            case SDL_EVENT_MOUSE_MOTION:
+                ProcessMousePosition({event.motion.x, event.motion.y});
+                break;
+
+            case SDL_EVENT_MOUSE_WHEEL:
+                ProcessScroll(event.wheel.y > 0? 1 : (event.wheel.y < 0? -1 : 0));
+                break;
+                
+            default:
+                break;
             }
         }
     }

@@ -18,6 +18,12 @@ public:
         mShader->Bind();
     }
 
+    void Update(f32 dt) override
+    {
+        if (Pixa::Input::IsKeyDown(Pixa::Key::ESCAPE))
+            mEngine->Stop();
+    }
+
 private:
     Pixa::Engine* mEngine = nullptr;
     const Pixa::Renderer* mRenderer = nullptr;

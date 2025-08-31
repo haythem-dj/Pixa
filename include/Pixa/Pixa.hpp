@@ -6,6 +6,9 @@
 #include "Pixa/Core/Application.hpp"
 #include "Pixa/Core/Window.hpp"
 
+#include "Pixa/Input/InputCodes.hpp"
+#include "Pixa/Input/Input.hpp"
+
 #include "Pixa/Graphics/Renderer.hpp"
 #include "Pixa/Graphics/Shader.hpp"
 

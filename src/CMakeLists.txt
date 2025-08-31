@@ -2,6 +2,7 @@ set(LIB_SRCS
     Core/Engine.cpp
     Core/Logger.cpp
     Core/Window.cpp
+    Input/Input.cpp
     Graphics/Renderer.cpp
     Graphics/Shader.cpp
 )
