@@ -11,7 +11,7 @@ namespace Pixa
 
         virtual void Init() {};
         virtual void Shutdown() {};
-        virtual void Update(f32 dt) {};
+        virtual void Update(f32 dt) { (void)dt; };
         virtual void Render() {};
     };
 }

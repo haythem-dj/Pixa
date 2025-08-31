@@ -2,6 +2,8 @@ set(LIB_SRCS
     Core/Engine.cpp
     Core/Logger.cpp
     Core/Window.cpp
+    Graphics/Renderer.cpp
+    Graphics/Shader.cpp
 )
 
 add_library(Pixa SHARED ${LIB_SRCS})
@@ -28,4 +30,5 @@ target_link_libraries(Pixa PRIVATE
 
 target_link_libraries(Pixa PUBLIC
     spdlog::spdlog
+    glm::glm
 )

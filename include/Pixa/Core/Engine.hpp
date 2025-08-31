@@ -6,6 +6,8 @@
 #include "Pixa/Core/Logger.hpp"
 #include "Pixa/Core/Window.hpp"
 
+#include "Pixa/Graphics/Renderer.hpp"
+
 #include <memory>
 
 namespace Pixa
@@ -26,8 +28,9 @@ namespace Pixa
 
         void Stop() { mRunning = false; }
 
-        const std::unique_ptr<Logger>& GetLogger() const { return mLogger; }
-        const std::unique_ptr<Window>& GetWindow() const { return mWindow; }
+        const Logger& GetLogger() const { return *mLogger; }
+        const Window& GetWindow() const { return *mWindow; }
+        const Renderer& GetRenderer() const { return *mRenderer; }
 
     private:
         Engine();
@@ -37,8 +40,9 @@ namespace Pixa
 
         Application* mApplication = nullptr;
 
-        std::unique_ptr<Logger> mLogger;
-        std::unique_ptr<Window> mWindow;
+        std::unique_ptr<Logger> mLogger = nullptr;
+        std::unique_ptr<Window> mWindow = nullptr;
+        std::unique_ptr<Renderer> mRenderer = nullptr;
 
     private:
         static Engine* mInstance;

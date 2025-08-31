@@ -1,4 +1,5 @@
 #include "Pixa/pch.hpp"
+
 #include "Pixa/Core/Engine.hpp"
 #include "Pixa/Core/Application.hpp"
 
@@ -14,14 +15,17 @@ namespace Pixa
         mWindow = std::make_unique<Window>();
         if (!*mWindow) return;
 
-        glClearColor(1.f, 1.f, 1.f, 1.f);
-        
+        mRenderer = std::make_unique<Renderer>(*mWindow);
+        mRenderer->SetClearColor({1.f, 1.f, 1.f, 1.f});
+
         mRunning = true;
     }
 
     Engine::~Engine()
     {
-        
+        mLogger.reset();
+        mWindow.reset();
+        mRenderer.reset();
     }
 
     Engine& Engine::GetInstance()
@@ -38,9 +42,10 @@ namespace Pixa
 
     void Engine::Render()
     {
+        mRenderer->RenderBegin();
         mApplication->Render();
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        mWindow->SwapBuffers();
+        mRenderer->Clear();
+        mRenderer->RenderEnd();
     }
 
     void Engine::Run(Application* application)

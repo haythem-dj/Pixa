@@ -41,3 +41,9 @@ typedef std::string str;
 #else
     #define PIXA_CONFIG_RELEASE
 #endif
+
+#ifdef PIXA_CONFIG_DEBUG
+    #define PIXA_ENABLE_ASSERTS 1
+#else
+    #define PIXA_ENABLE_ASSERTS 0
+#endif

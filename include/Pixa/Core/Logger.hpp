@@ -3,6 +3,7 @@
 #include "Pixa/Common/Defines.hpp"
 
 #include <spdlog/spdlog.h>
+
 #include <memory>
 
 namespace Pixa
@@ -57,9 +58,9 @@ namespace Pixa
     };
 }
 
-#define PIXA_TRACE(...) ::Pixa::Engine::GetInstance().GetLogger()->Log(::Pixa::LogType::Trace, __VA_ARGS__)
-#define PIXA_DEBUG(...) ::Pixa::Engine::GetInstance().GetLogger()->Log(::Pixa::LogType::Debug, __VA_ARGS__)
-#define PIXA_INFO(...) ::Pixa::Engine::GetInstance().GetLogger()->Log(::Pixa::LogType::Info, __VA_ARGS__)
-#define PIXA_WARN(...) ::Pixa::Engine::GetInstance().GetLogger()->Log(::Pixa::LogType::Warn, __VA_ARGS__)
-#define PIXA_ERROR(...) ::Pixa::Engine::GetInstance().GetLogger()->Log(::Pixa::LogType::Error, __VA_ARGS__)
-#define PIXA_FATAL(...) ::Pixa::Engine::GetInstance().GetLogger()->Log(::Pixa::LogType::Fatal, __VA_ARGS__)
+#define PIXA_TRACE(...) ::Pixa::Engine::GetInstance().GetLogger().Log(::Pixa::LogType::Trace, __VA_ARGS__)
+#define PIXA_DEBUG(...) ::Pixa::Engine::GetInstance().GetLogger().Log(::Pixa::LogType::Debug, __VA_ARGS__)
+#define PIXA_INFO(...) ::Pixa::Engine::GetInstance().GetLogger().Log(::Pixa::LogType::Info, __VA_ARGS__)
+#define PIXA_WARN(...) ::Pixa::Engine::GetInstance().GetLogger().Log(::Pixa::LogType::Warn, __VA_ARGS__)
+#define PIXA_ERROR(...) ::Pixa::Engine::GetInstance().GetLogger().Log(::Pixa::LogType::Error, __VA_ARGS__)
+#define PIXA_FATAL(...) ::Pixa::Engine::GetInstance().GetLogger().Log(::Pixa::LogType::Fatal, __VA_ARGS__)

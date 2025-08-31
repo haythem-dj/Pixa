@@ -1,4 +1,5 @@
 #include "Pixa/pch.hpp"
+
 #include "Pixa/Core/Window.hpp"
 #include "Pixa/Core/Engine.hpp"
 
@@ -75,7 +76,7 @@ namespace Pixa
         }
     }
 
-    void Window::SwapBuffers()
+    void Window::SwapBuffers() const
     {
         SDL_GL_SwapWindow((SDL_Window*)mWindow);
     }
