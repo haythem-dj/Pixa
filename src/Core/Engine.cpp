@@ -1,22 +1,31 @@
+#include "Pixa/pch.hpp"
+
 #include "Pixa/Core/Engine.hpp"
 #include "Pixa/Core/Application.hpp"
 
-#include <iostream>
+#include <glad/gl.h>
 
 namespace Pixa
 {
     Engine* Engine::mInstance = nullptr;
 
     Engine::Engine()
-        :mIsRunning(false)
     {
+        mLogger = std::make_unique<Logger>("Pixa");
+        mWindow = std::make_unique<Window>();
+        if (!*mWindow) return;
 
-        mIsRunning = true;
+        mRenderer = std::make_unique<Renderer>(*mWindow);
+        mRenderer->SetClearColor({1.f, 1.f, 1.f, 1.f});
+
+        mRunning = true;
     }
 
     Engine::~Engine()
     {
-        
+        mLogger.reset();
+        mWindow.reset();
+        mRenderer.reset();
     }
 
     Engine& Engine::GetInstance()
@@ -25,21 +34,38 @@ namespace Pixa
         return *mInstance;
     }
 
+    void Engine::Update(f32 dt)
+    {
+        mWindow->Update();
+        mApplication->Update(dt);
+    }
+
+    void Engine::Render()
+    {
+        mRenderer->RenderBegin();
+        mApplication->Render();
+        mRenderer->Clear();
+        mRenderer->RenderEnd();
+    }
+
     void Engine::Run(Application* application)
     {
         if (!application)
         {
-            std::cerr << "application is nullptr\n";
+            PIXA_ERROR("application is null.");
             return;
         }
 
-        application->Init();
+        mApplication = application;
 
-        while(mIsRunning)
+        mApplication->Init();
+
+        while(mRunning)
         {
-
+            Update(1.f);
+            Render();
         }
 
-        application->Shutdown();
+        mApplication->Shutdown();
     }
 }

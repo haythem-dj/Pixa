@@ -2,10 +2,16 @@
 
 #include "Pixa/Common/Defines.hpp"
 
+#include "Pixa/Core/Application.hpp"
+#include "Pixa/Core/Logger.hpp"
+#include "Pixa/Core/Window.hpp"
+
+#include "Pixa/Graphics/Renderer.hpp"
+
+#include <memory>
+
 namespace Pixa
 {
-    class Application;
-
     class PIXA_API Engine
     {
     public:
@@ -13,15 +19,30 @@ namespace Pixa
         Engine(const Engine&) = delete;
         Engine& operator=(const Engine&) = delete;
 
+        void Update(f32 dt);
+        void Render();
+
         void Run(Application* application);
 
         static Engine& GetInstance();
+
+        void Stop() { mRunning = false; }
+
+        const Logger& GetLogger() const { return *mLogger; }
+        const Window& GetWindow() const { return *mWindow; }
+        const Renderer& GetRenderer() const { return *mRenderer; }
 
     private:
         Engine();
 
     private:
-        b8 mIsRunning;
+        b8 mRunning = false;
+
+        Application* mApplication = nullptr;
+
+        std::unique_ptr<Logger> mLogger = nullptr;
+        std::unique_ptr<Window> mWindow = nullptr;
+        std::unique_ptr<Renderer> mRenderer = nullptr;
 
     private:
         static Engine* mInstance;
