@@ -5,6 +5,9 @@ set(LIB_SRCS
     Input/Input.cpp
     Graphics/Renderer.cpp
     Graphics/Shader.cpp
+    Graphics/VAO.cpp
+    Graphics/VBO.cpp
+    Graphics/IBO.cpp
 )
 
 add_library(Pixa SHARED ${LIB_SRCS})

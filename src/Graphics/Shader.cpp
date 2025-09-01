@@ -97,4 +97,11 @@ namespace Pixa
 
         return ss.str();
     }
+
+    std::shared_ptr<Shader> Shader::Create(const std::filesystem::path& vertexPath, const std::filesystem::path& fragmentPath)
+    {
+        std::shared_ptr<Shader> shader(new Shader(vertexPath, fragmentPath));
+        if (!*shader) return nullptr;
+        return shader;
+    }
 }

@@ -10,6 +10,9 @@
 
 namespace Pixa
 {
+    class Shader;
+    class VAO;
+    
     class PIXA_API Renderer
     {
     public:
@@ -19,8 +22,10 @@ namespace Pixa
         void RenderBegin();
         void RenderEnd();
 
-        void SetClearColor(const glm::vec4& color);
-        void Clear();
+        void SetClearColor(const glm::vec4& color) const;
+        void Clear() const;
+
+        void DrawIndexed(const std::shared_ptr<VAO>& vao, const std::shared_ptr<Shader>& shader) const;
 
     private:
         const Window& mWindow;

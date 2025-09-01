@@ -44,7 +44,6 @@ namespace Pixa
     {
         mRenderer->RenderBegin();
         mApplication->Render();
-        mRenderer->Clear();
         mRenderer->RenderEnd();
     }
 
