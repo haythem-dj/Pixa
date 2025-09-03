@@ -8,6 +8,7 @@ set(LIB_SRCS
     Graphics/VAO.cpp
     Graphics/VBO.cpp
     Graphics/IBO.cpp
+    Graphics/Texture.cpp
 )
 
 add_library(Pixa SHARED ${LIB_SRCS})
@@ -29,6 +30,7 @@ target_precompile_headers(Pixa PRIVATE ${CMAKE_SOURCE_DIR}/include/Pixa/pch.hpp)
 
 target_link_libraries(Pixa PRIVATE
     SDL3::SDL3
+    stb_image
     glad
 )
 

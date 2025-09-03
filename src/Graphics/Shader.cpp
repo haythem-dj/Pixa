@@ -4,10 +4,10 @@
 
 #include "Pixa/Core/Engine.hpp"
 
-#include <glad/gl.h>
-
 #include <fstream>
 #include <sstream>
+
+#include <glad/gl.h>
 
 namespace Pixa
 {
@@ -103,5 +103,11 @@ namespace Pixa
         std::shared_ptr<Shader> shader(new Shader(vertexPath, fragmentPath));
         if (!*shader) return nullptr;
         return shader;
+    }
+
+    void Shader::SetInt(str name, i32 value)
+    {
+        u32 location = glGetUniformLocation(mID, name.c_str());
+        glUniform1i(location, value);
     }
 }

@@ -21,6 +21,8 @@ namespace Pixa
 
         static std::shared_ptr<Shader> Create(const std::filesystem::path& vertexPath, const std::filesystem::path& fragmentPath);
 
+        void SetInt(str name, i32 value);
+
     private:
         Shader(const std::filesystem::path& vertexPath, const std::filesystem::path& fragmentPath);
         u32 CompileShader(u32 type, const char* source);

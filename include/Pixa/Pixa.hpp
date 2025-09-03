@@ -14,6 +14,7 @@
 #include "Pixa/Graphics/VAO.hpp"
 #include "Pixa/Graphics/VBO.hpp"
 #include "Pixa/Graphics/IBO.hpp"
+#include "Pixa/Graphics/Texture.hpp"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
