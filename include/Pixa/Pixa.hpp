@@ -5,6 +5,8 @@
 #include "Pixa/Core/Engine.hpp"
 #include "Pixa/Core/Application.hpp"
 #include "Pixa/Core/Window.hpp"
+#include "Pixa/Core/Timer.hpp"
+#include "Pixa/Core/ScopedTimer.hpp"
 
 #include "Pixa/Input/InputCodes.hpp"
 #include "Pixa/Input/Input.hpp"

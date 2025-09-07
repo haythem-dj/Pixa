@@ -1,3 +1,5 @@
+#include "Pixa/pch.hpp"
+
 #include "Pixa/Core/Timer.hpp"
 
 namespace Pixa
