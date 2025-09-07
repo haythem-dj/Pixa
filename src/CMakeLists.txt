@@ -2,9 +2,15 @@ set(LIB_SRCS
     Core/Engine.cpp
     Core/Logger.cpp
     Core/Window.cpp
+    Core/Timer.cpp
     Input/Input.cpp
     Graphics/Renderer.cpp
     Graphics/Shader.cpp
+    Graphics/VAO.cpp
+    Graphics/VBO.cpp
+    Graphics/IBO.cpp
+    Graphics/Texture.cpp
+    Scene/Camera.cpp
 )
 
 add_library(Pixa SHARED ${LIB_SRCS})
@@ -26,6 +32,7 @@ target_precompile_headers(Pixa PRIVATE ${CMAKE_SOURCE_DIR}/include/Pixa/pch.hpp)
 
 target_link_libraries(Pixa PRIVATE
     SDL3::SDL3
+    stb_image
     glad
 )
 

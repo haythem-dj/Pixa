@@ -11,6 +11,12 @@
 
 #include "Pixa/Graphics/Renderer.hpp"
 #include "Pixa/Graphics/Shader.hpp"
+#include "Pixa/Graphics/VAO.hpp"
+#include "Pixa/Graphics/VBO.hpp"
+#include "Pixa/Graphics/IBO.hpp"
+#include "Pixa/Graphics/Texture.hpp"
+
+#include "Pixa/Scene/Camera.hpp"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>

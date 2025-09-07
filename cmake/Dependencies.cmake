@@ -35,6 +35,20 @@ FetchContent_MakeAvailable(SDL3)
 
 # =======================================================================
 FetchContent_Declare(
+    stb_image
+    URL https://raw.githubusercontent.com/nothings/stb/master/stb_image.h
+    SOURCE_DIR ${CMAKE_SOURCE_DIR}/external/stb_image/include/stb_image
+    DOWNLOAD_NO_EXTRACT TRUE
+)
+
+message(STATUS "[deps] Getting stb_image")
+FetchContent_MakeAvailable(stb_image)
+
+add_library(stb_image INTERFACE)
+target_include_directories(stb_image INTERFACE ${CMAKE_SOURCE_DIR}/external/stb_image/include)
+
+# =======================================================================
+FetchContent_Declare(
     glad
     GIT_REPOSITORY https://github.com/Dav1dde/glad
     GIT_TAG v2.0.8
