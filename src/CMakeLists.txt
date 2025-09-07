@@ -3,6 +3,7 @@ set(LIB_SRCS
     Core/Logger.cpp
     Core/Window.cpp
     Core/Timer.cpp
+    Core/ScopedTimer.cpp
     Input/Input.cpp
     Graphics/Renderer.cpp
     Graphics/Shader.cpp

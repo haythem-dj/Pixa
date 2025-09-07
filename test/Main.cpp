@@ -65,6 +65,7 @@ public:
 
     void Render() override
     {
+        Pixa::ScopedTimer("Rendering");
         mRenderer->RenderBegin();
         mRenderer->Clear();
         mRenderer->DrawTextured(mVAO, mShader, mTexture);
