@@ -4,6 +4,7 @@
 
 #include <filesystem>
 #include <memory>
+#include <glm/glm.hpp>
 
 namespace Pixa
 {
@@ -21,7 +22,15 @@ namespace Pixa
 
         static std::shared_ptr<Shader> Create(const std::filesystem::path& vertexPath, const std::filesystem::path& fragmentPath);
 
-        void SetInt(str name, i32 value);
+        void SetInt(const str& name, i32 value);
+
+        void SetFloat(const str& name, f32 value);
+        void SetFloat2(const str& name, const glm::vec2& value);
+        void SetFloat3(const str& name, const glm::vec3& value);
+        void SetFloat4(const str& name, const glm::vec4& value);
+
+        void SetMatrix3(const str& name, const glm::mat3& value);
+        void SetMatrix4(const str& name, const glm::mat4& value);
 
     private:
         Shader(const std::filesystem::path& vertexPath, const std::filesystem::path& fragmentPath);

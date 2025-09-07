@@ -2,6 +2,7 @@ set(LIB_SRCS
     Core/Engine.cpp
     Core/Logger.cpp
     Core/Window.cpp
+    Core/Timer.cpp
     Input/Input.cpp
     Graphics/Renderer.cpp
     Graphics/Shader.cpp
@@ -9,6 +10,7 @@ set(LIB_SRCS
     Graphics/VBO.cpp
     Graphics/IBO.cpp
     Graphics/Texture.cpp
+    Scene/Camera.cpp
 )
 
 add_library(Pixa SHARED ${LIB_SRCS})

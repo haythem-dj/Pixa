@@ -3,6 +3,7 @@
 #include "Pixa/Graphics/Renderer.hpp"
 #include "Pixa/Graphics/Shader.hpp"
 #include "Pixa/Graphics/VAO.hpp"
+#include "Pixa/Graphics/Texture.hpp"
 
 #include "Pixa/Core/Engine.hpp"
 
@@ -18,10 +19,10 @@ namespace Pixa
     Renderer::~Renderer()
     {}
 
-    void Renderer::RenderBegin()
+    void Renderer::RenderBegin() const
     {}
 
-    void Renderer::RenderEnd()
+    void Renderer::RenderEnd() const
     {
         mWindow.SwapBuffers();
     }
@@ -41,5 +42,13 @@ namespace Pixa
         shader->Bind();
         vao->Bind();
         glDrawElements(GL_TRIANGLES, vao->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, 0);
+    }
+
+    void Renderer::DrawTextured(const std::shared_ptr<VAO>& vao,
+            const std::shared_ptr<Shader>& shader,
+            const std::shared_ptr<Texture>& texture) const
+    {
+        texture->Bind();
+        DrawIndexed(vao, shader);
     }
 }

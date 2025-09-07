@@ -12,6 +12,7 @@ namespace Pixa
 {
     class Shader;
     class VAO;
+    class Texture;
     
     class PIXA_API Renderer
     {
@@ -19,13 +20,17 @@ namespace Pixa
         Renderer(const Window& window);
         ~Renderer();
 
-        void RenderBegin();
-        void RenderEnd();
+        void RenderBegin() const;
+        void RenderEnd() const;
 
         void SetClearColor(const glm::vec4& color) const;
         void Clear() const;
 
-        void DrawIndexed(const std::shared_ptr<VAO>& vao, const std::shared_ptr<Shader>& shader) const;
+        void DrawIndexed(const std::shared_ptr<VAO>& vao,
+            const std::shared_ptr<Shader>& shader) const;
+        void DrawTextured(const std::shared_ptr<VAO>& vao,
+            const std::shared_ptr<Shader>& shader,
+            const std::shared_ptr<Texture>& texture) const;
 
     private:
         const Window& mWindow;

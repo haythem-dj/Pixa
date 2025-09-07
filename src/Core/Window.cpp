@@ -11,6 +11,7 @@
 namespace Pixa
 {
     Window::Window(const WindowProps& windowProps)
+        :mWindowProps(windowProps)
     {
         if (!SDL_Init(SDL_INIT_VIDEO))
         {
@@ -100,6 +101,11 @@ namespace Pixa
             case SDL_EVENT_MOUSE_WHEEL:
                 ProcessScroll(event.wheel.y > 0? 1 : (event.wheel.y < 0? -1 : 0));
                 break;
+
+            case SDL_EVENT_WINDOW_RESIZED:
+                mWindowProps.Width = event.window.data1;
+                mWindowProps.Height = event.window.data2;
+                Engine::GetInstance().Resize(event.window.data1, event.window.data2);
                 
             default:
                 break;

@@ -42,9 +42,7 @@ namespace Pixa
 
     void Engine::Render()
     {
-        mRenderer->RenderBegin();
         mApplication->Render();
-        mRenderer->RenderEnd();
     }
 
     void Engine::Run(Application* application)
@@ -59,12 +57,20 @@ namespace Pixa
 
         mApplication->Init();
 
+        f32 dt = 1.f;
         while(mRunning)
         {
-            Update(1.f);
+            mTimer.Reset();
+            Update(dt);
             Render();
+            dt = (f32)mTimer.Elapsed();
         }
 
         mApplication->Shutdown();
+    }
+
+    void Engine::Resize(u32 width, u32 height)
+    {
+        mApplication->Resize(width, height);
     }
 }

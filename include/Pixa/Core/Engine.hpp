@@ -5,6 +5,7 @@
 #include "Pixa/Core/Application.hpp"
 #include "Pixa/Core/Logger.hpp"
 #include "Pixa/Core/Window.hpp"
+#include "Pixa/Core/Timer.hpp"
 
 #include "Pixa/Graphics/Renderer.hpp"
 
@@ -24,9 +25,14 @@ namespace Pixa
 
         void Run(Application* application);
 
+        void Resize(u32 idth, u32 height);
+
         static Engine& GetInstance();
 
         void Stop() { mRunning = false; }
+
+        u32 GetWidth() const { return mWindow->GetWindowProps().Width; }
+        u32 GetHeight() const { return mWindow->GetWindowProps().Height; }
 
         const Logger& GetLogger() const { return *mLogger; }
         const Window& GetWindow() const { return *mWindow; }
@@ -37,6 +43,8 @@ namespace Pixa
 
     private:
         b8 mRunning = false;
+
+        Timer mTimer;
 
         Application* mApplication = nullptr;
 

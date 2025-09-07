@@ -25,10 +25,14 @@ namespace Pixa
 
         void Update();
         void SwapBuffers() const;
+
+        const WindowProps& GetWindowProps() const { return mWindowProps; }
     
     private:
         void* mWindow = nullptr;
         void* mContext = nullptr;
+
+        WindowProps mWindowProps;
     
     };
 }

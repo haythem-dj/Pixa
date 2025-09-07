@@ -26,6 +26,7 @@ public:
         mVBO = Pixa::VBO::Create(sizeof(verts), verts);
         mIBO = Pixa::IBO::Create(6, indes);
         mTexture = Pixa::Texture::Create("res/textures/brick.png");
+        mCamera = Pixa::Camera::Create(mEngine->GetWidth(), mEngine->GetHeight());
 
         if (mShader == nullptr ||
             mVAO == nullptr ||
@@ -45,13 +46,34 @@ public:
     {
         (void) dt;
         CheckExit();
+
+        glm::vec2 direction{0.0f};
+        if (Pixa::Input::IsKeyDown(Pixa::Key::D)) direction.x = 1.0f;
+        else if (Pixa::Input::IsKeyDown(Pixa::Key::Q)) direction.x = -1.0f;
+        else direction.x = 0.0f;
+
+        if (Pixa::Input::IsKeyDown(Pixa::Key::Z)) direction.y = 1.0f;
+        else if (Pixa::Input::IsKeyDown(Pixa::Key::S)) direction.y = -1.0f;
+        else direction.y = 0.0f;
+
+        if (glm::length(direction) != 0.f) direction = glm::normalize(direction);
+        mCamera->SetPosition(mCamera->GetPosition() + 5.0f * direction * dt);
+
+        mShader->SetMatrix4("uProjection", mCamera->GetProjection());
+        mShader->SetMatrix4("uView", mCamera->GetView());
     }
 
     void Render() override
     {
+        mRenderer->RenderBegin();
         mRenderer->Clear();
-        mTexture->Bind();
-        mRenderer->DrawIndexed(mVAO, mShader);
+        mRenderer->DrawTextured(mVAO, mShader, mTexture);
+        mRenderer->RenderEnd();
+    }
+
+    void Resize(u32 width, u32 height) override
+    {
+        mCamera->Resize(width, height);
     }
 
 private:
@@ -64,6 +86,8 @@ private:
 private:
     Pixa::Engine* mEngine = nullptr;
     const Pixa::Renderer* mRenderer = nullptr;
+
+    std::unique_ptr<Pixa::Camera> mCamera;
 
     std::shared_ptr<Pixa::Shader> mShader;
     std::shared_ptr<Pixa::VAO> mVAO;
