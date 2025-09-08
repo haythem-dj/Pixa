@@ -10,6 +10,9 @@ public:
         mEngine = &Pixa::Engine::GetInstance();
         mRenderer = &mEngine->GetRenderer();
 
+        mShader = mEngine->GetResourceManager().LoadShader("basic", "res/shaders/default.vert.glsl", "res/shaders/default.frag.glsl");
+        mTexture = mEngine->GetResourceManager().LoadTexture("brick", "res/textures/brick.png");
+
         f32 verts[] = {
             -0.7f, 0.5f, 0.f, 1.f,
             0.7f, 0.5f, 1.f, 1.f,
@@ -21,18 +24,14 @@ public:
             0, 1, 2, 0, 2, 3
         };
         
-        mShader = Pixa::Shader::Create("res/shaders/default.vert.glsl", "res/shaders/default.frag.glsl");
         mVAO = Pixa::VAO::Create();
         mVBO = Pixa::VBO::Create(sizeof(verts), verts);
         mIBO = Pixa::IBO::Create(6, indes);
-        mTexture = Pixa::Texture::Create("res/textures/brick.png");
         mCamera = Pixa::Camera::Create(mEngine->GetWidth(), mEngine->GetHeight());
 
-        if (mShader == nullptr ||
-            mVAO == nullptr ||
+        if (mVAO == nullptr ||
             mVBO == nullptr ||
-            mIBO == nullptr ||
-            mTexture == nullptr) mEngine->Stop();
+            mIBO == nullptr) mEngine->Stop();
 
         mVAO->AddVertexBuffer(mVBO, { 2, 2 });
         mVAO->SetIndexBuffer(mIBO);
@@ -65,7 +64,6 @@ public:
 
     void Render() override
     {
-        Pixa::ScopedTimer("Rendering");
         mRenderer->RenderBegin();
         mRenderer->Clear();
         mRenderer->DrawTextured(mVAO, mShader, mTexture);

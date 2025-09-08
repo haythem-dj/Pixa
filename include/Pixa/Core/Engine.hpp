@@ -6,6 +6,7 @@
 #include "Pixa/Core/Logger.hpp"
 #include "Pixa/Core/Window.hpp"
 #include "Pixa/Core/Timer.hpp"
+#include "Pixa/Core/ResourceManager.hpp"
 
 #include "Pixa/Graphics/Renderer.hpp"
 
@@ -34,6 +35,8 @@ namespace Pixa
         u32 GetWidth() const { return mWindow->GetWindowProps().Width; }
         u32 GetHeight() const { return mWindow->GetWindowProps().Height; }
 
+        ResourceManager& GetResourceManager() { return mResourceManager; }
+
         const Logger& GetLogger() const { return *mLogger; }
         const Window& GetWindow() const { return *mWindow; }
         const Renderer& GetRenderer() const { return *mRenderer; }
@@ -47,6 +50,8 @@ namespace Pixa
         Timer mTimer;
 
         Application* mApplication = nullptr;
+
+        ResourceManager mResourceManager;
 
         std::unique_ptr<Logger> mLogger = nullptr;
         std::unique_ptr<Window> mWindow = nullptr;
