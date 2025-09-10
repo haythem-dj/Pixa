@@ -18,6 +18,8 @@
 #include "Pixa/Graphics/IBO.hpp"
 #include "Pixa/Graphics/Texture.hpp"
 
+#include "Pixa/Scene/Scene.hpp"
+#include "Pixa/Scene/Entity.hpp"
 #include "Pixa/Scene/Camera.hpp"
 
 #include <glm/glm.hpp>

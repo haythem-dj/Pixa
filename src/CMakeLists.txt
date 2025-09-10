@@ -12,6 +12,8 @@ set(LIB_SRCS
     Graphics/VBO.cpp
     Graphics/IBO.cpp
     Graphics/Texture.cpp
+    Scene/Scene.cpp
+    Scene/Entity.cpp
     Scene/Camera.cpp
 )
 
@@ -41,4 +43,5 @@ target_link_libraries(Pixa PRIVATE
 target_link_libraries(Pixa PUBLIC
     spdlog::spdlog
     glm::glm
+    EnTT
 )

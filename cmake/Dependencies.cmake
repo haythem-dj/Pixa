@@ -81,3 +81,16 @@ FetchContent_Declare(
 message(STATUS "[deps] Getting glm")
 
 FetchContent_MakeAvailable(glm)
+
+# =======================================================================
+FetchContent_Declare(
+    entt
+    GIT_REPOSITORY https://github.com/skypjack/entt
+    GIT_TAG v3.15.0
+    SOURCE_DIR ${CMAKE_SOURCE_DIR}/external/entt
+    GIT_SHALLOW TRUE
+)
+
+message(STATUS "[deps] Getting entt")
+
+FetchContent_MakeAvailable(entt)

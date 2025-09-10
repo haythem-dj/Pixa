@@ -2,6 +2,18 @@
 
 #include <memory>
 
+struct Position
+{
+    f32 x;
+    f32 y;
+};
+
+struct Velocity
+{
+    f32 dx;
+    f32 dy;
+};
+
 class PixaTest : public Pixa::Application
 {
 public:
