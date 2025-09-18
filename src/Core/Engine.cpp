@@ -42,7 +42,9 @@ namespace Pixa
 
     void Engine::Render()
     {
+        mRenderer->RenderBegin();
         mApplication->Render();
+        mRenderer->RenderEnd();
     }
 
     void Engine::Run(Application* application)
@@ -71,6 +73,7 @@ namespace Pixa
 
     void Engine::Resize(u32 width, u32 height)
     {
+        mRenderer->Resize(width, height);
         mApplication->Resize(width, height);
     }
 }

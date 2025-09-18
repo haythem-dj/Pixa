@@ -8,9 +8,7 @@ set(LIB_SRCS
     Input/Input.cpp
     Graphics/Renderer.cpp
     Graphics/Shader.cpp
-    Graphics/VAO.cpp
-    Graphics/VBO.cpp
-    Graphics/IBO.cpp
+    Graphics/Mesh.cpp
     Graphics/Texture.cpp
     Scene/Scene.cpp
     Scene/Entity.cpp

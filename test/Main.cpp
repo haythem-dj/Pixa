@@ -2,18 +2,6 @@
 
 #include <memory>
 
-struct Position
-{
-    f32 x;
-    f32 y;
-};
-
-struct Velocity
-{
-    f32 dx;
-    f32 dy;
-};
-
 class PixaTest : public Pixa::Application
 {
 public:
@@ -25,28 +13,20 @@ public:
         mShader = mEngine->GetResourceManager().LoadShader("basic", "res/shaders/default.vert.glsl", "res/shaders/default.frag.glsl");
         mTexture = mEngine->GetResourceManager().LoadTexture("brick", "res/textures/brick.png");
 
-        f32 verts[] = {
-            -0.7f, 0.5f, 0.f, 1.f,
-            0.7f, 0.5f, 1.f, 1.f,
-            0.7f, -0.5f, 1.f, 0.f,
-            -0.7f, -0.5f, 0.f, 0.f,
+        std::vector<Pixa::Vertex> vertices = {
+            { { -0.5f,  0.5f }, {0.f, 1.f}, { 1.f, 0.f, 0.f, 1.f } },
+            { {  0.5f,  0.5f }, {1.f, 1.f}, { 1.f, 1.f, 0.f, 1.f } },
+            { {  0.5f, -0.5f }, {1.f, 0.f}, { 1.f, 0.f, 1.f, 1.f } },
+            { { -0.5f, -0.5f }, {0.f, 0.f}, { 0.f, 1.f, 1.f, 1.f } },
         };
 
-        u32 indes[] = {
+        std::vector<u32> indices = {
             0, 1, 2, 0, 2, 3
         };
+
+        mMesh = Pixa::Mesh::Create(vertices, indices);
         
-        mVAO = Pixa::VAO::Create();
-        mVBO = Pixa::VBO::Create(sizeof(verts), verts);
-        mIBO = Pixa::IBO::Create(6, indes);
         mCamera = Pixa::Camera::Create(mEngine->GetWidth(), mEngine->GetHeight());
-
-        if (mVAO == nullptr ||
-            mVBO == nullptr ||
-            mIBO == nullptr) mEngine->Stop();
-
-        mVAO->AddVertexBuffer(mVBO, { 2, 2 });
-        mVAO->SetIndexBuffer(mIBO);
 
         mShader->SetInt("uDiffuse", 0);
         
@@ -76,10 +56,8 @@ public:
 
     void Render() override
     {
-        mRenderer->RenderBegin();
         mRenderer->Clear();
-        mRenderer->DrawTextured(mVAO, mShader, mTexture);
-        mRenderer->RenderEnd();
+        mRenderer->DrawTextured(mMesh, mShader, mTexture);
     }
 
     void Resize(u32 width, u32 height) override
@@ -101,9 +79,7 @@ private:
     std::unique_ptr<Pixa::Camera> mCamera;
 
     std::shared_ptr<Pixa::Shader> mShader;
-    std::shared_ptr<Pixa::VAO> mVAO;
-    std::shared_ptr<Pixa::VBO> mVBO;
-    std::shared_ptr<Pixa::IBO> mIBO;
+    std::shared_ptr<Pixa::Mesh> mMesh;
     std::shared_ptr<Pixa::Texture> mTexture;
 
 };

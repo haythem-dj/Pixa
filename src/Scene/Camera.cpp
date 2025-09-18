@@ -2,6 +2,8 @@
 
 #include "Pixa/Scene/Camera.hpp"
 
+#include "Pixa/Core/Engine.hpp"
+
 namespace Pixa
 {
     Camera::Camera(u32 width, u32 height)
@@ -15,7 +17,7 @@ namespace Pixa
 
     void Camera::Resize(u32 width, u32 height)
     {
-        mAspectRatio = (f32)width / (f32) height;
+        mAspectRatio = (f32)width / (f32)height;
         CalculateProjection();
     }
 
@@ -33,11 +35,15 @@ namespace Pixa
 
     void Camera::CalculateProjection()
     {
-        mProjection = glm::ortho(-mAspectRatio, mAspectRatio, -1.0f, 1.0f, -1.0f, 1.0f);
+        mProjection = glm::ortho(
+            -mAspectRatio, mAspectRatio,
+            -1.f, 1.f,
+            -1.f, 1.f
+        );
     }
 
     void Camera::CalculateView()
-    {
+    {        
         mView = glm::mat4(1.f);
         mView = glm::translate(mView, glm::vec3{-mPosition, 0.0f});
         mView = glm::rotate(mView, -glm::radians(mRotation), {0.0f, 0.0f, 1.0f});
