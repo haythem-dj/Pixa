@@ -39,7 +39,7 @@ namespace Pixa
 
         const Logger& GetLogger() const { return *mLogger; }
         const Window& GetWindow() const { return *mWindow; }
-        const Renderer& GetRenderer() const { return *mRenderer; }
+        Renderer& GetRenderer() const { return *mRenderer; }
 
     private:
         Engine();

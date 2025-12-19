@@ -13,18 +13,22 @@ public:
         mShader = mEngine->GetResourceManager().LoadShader("basic", "res/shaders/default.vert.glsl", "res/shaders/default.frag.glsl");
         mTexture = mEngine->GetResourceManager().LoadTexture("brick", "res/textures/brick.png");
 
-        std::vector<Pixa::Vertex> vertices = {
-            { { -0.5f,  0.5f }, {0.f, 1.f}, { 1.f, 0.f, 0.f, 1.f } },
-            { {  0.5f,  0.5f }, {1.f, 1.f}, { 1.f, 1.f, 0.f, 1.f } },
-            { {  0.5f, -0.5f }, {1.f, 0.f}, { 1.f, 0.f, 1.f, 1.f } },
-            { { -0.5f, -0.5f }, {0.f, 0.f}, { 0.f, 1.f, 1.f, 1.f } },
+        std::vector<f32> verts = {
+            -0.5f, -0.5f, 0.0f, 0.0f,
+            -0.5f, 0.5f,  0.0f, 1.0f,
+             0.5f, 0.5f,  1.0f, 1.0f,
+             0.5f, -0.5f, 1.0f, 0.0f,
         };
 
-        std::vector<u32> indices = {
+        std::vector<u32> indis = {
             0, 1, 2, 0, 2, 3
         };
+        
+        mVAO = Pixa::VAO::Create();
+        mVBO = Pixa::VBO::Create(sizeof(verts), verts.data());
+        mIBO = Pixa::IBO::Create(indis.size(), indis.data());
 
-        mMesh = Pixa::Mesh::Create(vertices, indices);
+        mMaterial.Textures["uDiffuse"] = { mTexture, 0};
         
         mCamera = Pixa::Camera::Create(mEngine->GetWidth(), mEngine->GetHeight());
 
@@ -35,7 +39,6 @@ public:
     
     void Update(f32 dt) override
     {
-        (void) dt;
         CheckExit();
 
         glm::vec2 direction{0.0f};
@@ -57,7 +60,6 @@ public:
     void Render() override
     {
         mRenderer->Clear();
-        mRenderer->DrawTextured(mMesh, mShader, mTexture);
     }
 
     void Resize(u32 width, u32 height) override
@@ -74,13 +76,19 @@ private:
 
 private:
     Pixa::Engine* mEngine = nullptr;
-    const Pixa::Renderer* mRenderer = nullptr;
+    Pixa::Renderer* mRenderer = nullptr;
 
     std::unique_ptr<Pixa::Camera> mCamera;
 
     std::shared_ptr<Pixa::Shader> mShader;
-    std::shared_ptr<Pixa::Mesh> mMesh;
     std::shared_ptr<Pixa::Texture> mTexture;
+
+    std::shared_ptr<Pixa::VAO> mVAO;
+    std::shared_ptr<Pixa::VBO> mVBO;
+    std::shared_ptr<Pixa::IBO> mIBO;
+
+    Pixa::MaterialComponent mMaterial;
+
 
 };
 

@@ -11,8 +11,12 @@
 namespace Pixa
 {
     class Shader;
-    class Mesh;
+    class VAO;
+    class VBO;
+    class IBO;
     class Texture;
+
+    class MaterialComponent;
     
     class PIXA_API Renderer
     {
@@ -22,24 +26,24 @@ namespace Pixa
 
         void Resize(u32 width, u32 height);
 
-        void RenderBegin() const;
-        void RenderEnd() const;
+        void BeginRender();
+        void EndRender();
 
-        void SceneBegin(const std::shared_ptr<Shader>& shader) const;
-        void SceneEnd() const;
+        void BeginBatch(std::shared_ptr<Shader> shader);
+        void EndBatch();
 
-        void SetClearColor(const glm::vec4& color) const;
-        void Clear() const;
+        void Flush();
 
-        void DrawIndexed(const std::shared_ptr<Mesh>& mesh,
-            const std::shared_ptr<Shader>& shader) const;
+        void SetClearColor(const glm::vec4& color);
+        void Clear();
+
+        void DrawIndexed(const std::shared_ptr<VAO>& vao,
+            const std::shared_ptr<Shader>& shader);
             
-        void DrawTextured(const std::shared_ptr<Mesh>& mesh,
-            const std::shared_ptr<Shader>& shader,
-            const std::shared_ptr<Texture>& texture) const;
-
     private:
         const Window& mWindow;
+
+        std::shared_ptr<Shader> mActiveShader;
 
     };
 }

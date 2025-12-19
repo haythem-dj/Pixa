@@ -13,12 +13,19 @@
 
 #include "Pixa/Graphics/Renderer.hpp"
 #include "Pixa/Graphics/Shader.hpp"
-#include "Pixa/Graphics/Mesh.hpp"
+#include "Pixa/Graphics/VAO.hpp"
+#include "Pixa/Graphics/VBO.hpp"
+#include "Pixa/Graphics/IBO.hpp"
 #include "Pixa/Graphics/Texture.hpp"
 
 #include "Pixa/Scene/Scene.hpp"
 #include "Pixa/Scene/Entity.hpp"
 #include "Pixa/Scene/Camera.hpp"
+
+#include "Pixa/Scene/Components/NameComponent.hpp"
+#include "Pixa/Scene/Components/TransformComponent.hpp"
+#include "Pixa/Scene/Components/SpriteComponent.hpp"
+#include "Pixa/Scene/Components/MaterialComponent.hpp"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>

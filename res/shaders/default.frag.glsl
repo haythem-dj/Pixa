@@ -5,11 +5,9 @@ in vec4 vColor;
 
 out vec4 oColor;
 
-uniform int uTex = 0;
 uniform sampler2D uDiffuse;
 
 void main()
 {
-    if (uTex == 1) oColor = texture(uDiffuse, vTexCoords);
-    else oColor = vColor;
+    oColor = texture(uDiffuse, vTexCoords);
 }

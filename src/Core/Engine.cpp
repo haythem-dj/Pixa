@@ -42,9 +42,9 @@ namespace Pixa
 
     void Engine::Render()
     {
-        mRenderer->RenderBegin();
+        mRenderer->BeginRender();
         mApplication->Render();
-        mRenderer->RenderEnd();
+        mRenderer->EndRender();
     }
 
     void Engine::Run(Application* application)
