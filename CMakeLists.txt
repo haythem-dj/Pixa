@@ -4,15 +4,13 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 project(Pixa LANGUAGES CXX C)
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-include(FetchContent)
+find_package(SDL3 REQUIRED)
+find_package(glm REQUIRED)
+find_package(spdlog REQUIRED)
 
-include(cmake/Dependencies.cmake)
-
-add_subdirectory(src)
-
-if (PIXA_BUILD_TEST)
-    add_subdirectory(test)
-endif()
+add_subdirectory(External)
+add_subdirectory(Pixa)
+add_subdirectory(SandBox)
