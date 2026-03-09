@@ -1,12 +1,14 @@
+#include "Pixa/pch.hpp"
+
 #include "Pixa/Input/Input.hpp"
 
 namespace Pixa
 {
-    void ProcessKeys(Key key, b8 state) { Input::mKeys[key] = state; }
+    void Input::ProcessKeys(Key key, b8 state) { Input::mKeys[key] = state; }
 
-    void ProcessMouse(MouseButton button, b8 state) { Input::mButtons[button] = state; }
+    void Input::ProcessMouse(MouseButton button, b8 state) { Input::mButtons[button] = state; }
 
-    void ProcessMousePosition(glm::vec2 position) { Input::mMousePosition = position; }
+    void Input::ProcessMousePosition(glm::vec2 position) { Input::mMousePosition = position; }
 
-    void ProcessScroll(i32 scroll) { Input::mScroll = scroll; }
+    void Input::ProcessScroll(i32 scroll) { Input::mScroll = scroll; }
 } // namespace Pixa

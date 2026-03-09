@@ -19,12 +19,11 @@ namespace Pixa
         u32 GetID() const { return mID; }
 
         static std::shared_ptr<VBO> Create(u32 size, f32* data);
-        
+
     private:
         VBO(u32 size, f32* data);
 
     private:
         u32 mID = 0;
-    
     };
-}
+} // namespace Pixa

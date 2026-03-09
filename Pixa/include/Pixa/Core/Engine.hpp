@@ -4,8 +4,11 @@
 
 #include "Pixa/Core/Application.hpp"
 #include "Pixa/Core/Logger.hpp"
-#include "Pixa/Core/Window.hpp"
 #include "Pixa/Core/Timer.hpp"
+#include "Pixa/Core/Window.hpp"
+
+#include "Pixa/Events/Event.hpp"
+#include "Pixa/Events/WindowEvents.hpp"
 
 #include "Pixa/Graphics/Renderer.hpp"
 
@@ -25,11 +28,12 @@ namespace Pixa
 
         void Run(Application* application);
 
-        void Resize(u32 idth, u32 height);
+        void OnEvent(Event& event);
+        b8 Resize(WindowResizeEvent& event);
 
         static Engine& GetInstance();
 
-        void Stop() { mRunning = false; }
+        b8 Stop();
 
         u32 GetWidth() const { return mWindow->GetWindowProps().Width; }
         u32 GetHeight() const { return mWindow->GetWindowProps().Height; }
@@ -55,4 +59,4 @@ namespace Pixa
     private:
         static Engine* mInstance;
     };
-}
+} // namespace Pixa

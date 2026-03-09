@@ -20,13 +20,12 @@ namespace Pixa
         u32 GetCount() const { return mCount; }
 
         static std::shared_ptr<IBO> Create(u32 count, u32* data);
-        
+
     private:
         IBO(u32 count, u32* data);
 
     private:
         u32 mID = 0;
         u32 mCount = 0;
-    
     };
-}
+} // namespace Pixa

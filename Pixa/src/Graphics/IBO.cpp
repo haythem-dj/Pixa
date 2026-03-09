@@ -1,3 +1,5 @@
+#include "Pixa/pch.hpp"
+
 #include "Pixa/Graphics/IBO.hpp"
 
 #include <glad/glad.h>

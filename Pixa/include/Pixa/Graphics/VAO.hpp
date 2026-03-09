@@ -2,8 +2,8 @@
 
 #include "Pixa/Common/Defines.hpp"
 
-#include "Pixa/Graphics/VBO.hpp"
 #include "Pixa/Graphics/IBO.hpp"
+#include "Pixa/Graphics/VBO.hpp"
 
 #include <memory>
 #include <vector>
@@ -29,7 +29,7 @@ namespace Pixa
 
         const std::vector<std::shared_ptr<VBO>>& GetVertexBuffers() const { return mVBOs; }
         std::shared_ptr<IBO> GetIndexBuffer() { return mIBO; }
-        
+
     private:
         VAO();
 
@@ -40,6 +40,5 @@ namespace Pixa
 
         std::vector<std::shared_ptr<VBO>> mVBOs;
         std::shared_ptr<IBO> mIBO = nullptr;
-    
     };
-}
+} // namespace Pixa

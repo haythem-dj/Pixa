@@ -3,8 +3,8 @@
 #include "Pixa/Common/Defines.hpp"
 
 #include <filesystem>
-#include <memory>
 #include <glm/glm.hpp>
+#include <memory>
 
 namespace Pixa
 {
@@ -12,7 +12,7 @@ namespace Pixa
     {
     public:
         ~Shader();
-    
+
         explicit operator bool() const { return mID != 0; }
 
         void Bind() const;
@@ -20,7 +20,8 @@ namespace Pixa
 
         u32 GetID() const { return mID; }
 
-        static std::shared_ptr<Shader> Create(const std::filesystem::path& vertexPath, const std::filesystem::path& fragmentPath);
+        static std::shared_ptr<Shader> Create(
+            const std::filesystem::path& vertexPath, const std::filesystem::path& fragmentPath);
 
         void SetInt(const str& name, i32 value);
 
@@ -40,4 +41,4 @@ namespace Pixa
     private:
         u32 mID = 0;
     };
-}
+} // namespace Pixa

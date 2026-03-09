@@ -12,4 +12,6 @@ SpacesInParentheses: 'false'
 SpacesInSquareBrackets: 'false'
 PointerAlignment: Left
 ReferenceAlignment: Left
+AlwaysBreakTemplateDeclarations: 'true'
+BreakBeforeBraces: Allman
 ...

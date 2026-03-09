@@ -1,3 +1,6 @@
+#include "Pixa/Events/KeyboardEvents.hpp"
+#include "Pixa/Events/MouseEvents.hpp"
+#include "Pixa/Events/WindowEvents.hpp"
 #include "Pixa/pch.hpp"
 
 #include "Pixa/Core/Engine.hpp"
@@ -71,38 +74,69 @@ namespace Pixa
             switch (event.type)
             {
             case SDL_EVENT_QUIT:
-                Engine::GetInstance().Stop();
-                break;
+            {
+                WindowCloseEvent wc;
+                Engine::GetInstance().OnEvent(wc);
+            }
+            break;
 
             case SDL_EVENT_KEY_DOWN:
-                ProcessKeys((Key)event.key.key, true);
-                break;
+            {
+                KeyPressedEvent kp((Key)event.key.key);
+                Engine::GetInstance().OnEvent(kp);
+                Input::ProcessKeys((Key)event.key.key, true);
+            }
+            break;
 
             case SDL_EVENT_KEY_UP:
-                ProcessKeys((Key)event.key.key, false);
-                break;
+            {
+                KeyReleasedEvent kr((Key)event.key.key);
+                Engine::GetInstance().OnEvent(kr);
+                Input::ProcessKeys((Key)event.key.key, false);
+            }
+            break;
 
             case SDL_EVENT_MOUSE_BUTTON_DOWN:
-                ProcessMouse((MouseButton)event.key.key, true);
-                break;
+            {
+                MousePressedEvent mp((MouseButton)event.button.button);
+                Engine::GetInstance().OnEvent(mp);
+                Input::ProcessMouse((MouseButton)event.button.button, true);
+            }
+            break;
 
             case SDL_EVENT_MOUSE_BUTTON_UP:
-                ProcessMouse((MouseButton)event.key.key, false);
-                break;
+            {
+                MouseReleasedEvent mr((MouseButton)event.button.button);
+                Engine::GetInstance().OnEvent(mr);
+                Input::ProcessMouse((MouseButton)event.key.key, false);
+            }
+            break;
 
             case SDL_EVENT_MOUSE_MOTION:
-                ProcessMousePosition({event.motion.x, event.motion.y});
-                break;
+            {
+                MouseMovedEvent mm({event.motion.x, event.motion.y});
+                Engine::GetInstance().OnEvent(mm);
+                Input::ProcessMousePosition({event.motion.x, event.motion.y});
+            }
+            break;
 
             case SDL_EVENT_MOUSE_WHEEL:
-                ProcessScroll(event.wheel.y > 0 ? 1 : (event.wheel.y < 0 ? -1 : 0));
-                break;
+            {
+                i32 scrolled = event.wheel.y > 0 ? 1 : (event.wheel.y < 0 ? -1 : 0);
+                MouseScrolledEvent ms(scrolled);
+                Engine::GetInstance().OnEvent(ms);
+                Input::ProcessScroll(event.wheel.y > 0 ? 1 : (event.wheel.y < 0 ? -1 : 0));
+            }
+            break;
 
             case SDL_EVENT_WINDOW_RESIZED:
+            {
                 mWindowProps.Width = event.window.data1;
                 mWindowProps.Height = event.window.data2;
-                Engine::GetInstance().Resize(event.window.data1, event.window.data2);
-
+                WindowResizeEvent wr(event.window.data1, event.window.data2);
+                Engine::GetInstance().OnEvent(wr);
+            }
+            break;
             default:
                 break;
             }

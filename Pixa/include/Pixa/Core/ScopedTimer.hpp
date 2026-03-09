@@ -15,6 +15,5 @@ namespace Pixa
     private:
         str mName;
         Timer mTimer;
-
     };
-}
+} // namespace Pixa

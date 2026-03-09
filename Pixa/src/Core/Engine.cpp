@@ -66,5 +66,22 @@ namespace Pixa
         mApplication->Shutdown();
     }
 
-    void Engine::Resize(u32 width, u32 height) { mApplication->Resize(width, height); }
+    void Engine::OnEvent(Event& event)
+    {
+        EventDispatcher dispatcher(event);
+        dispatcher.Dispactch<WindowCloseEvent>([this](WindowCloseEvent& event) { return this->Stop(); });
+        dispatcher.Dispactch<WindowResizeEvent>([this](WindowResizeEvent& event) { return this->Resize(event); });
+    }
+
+    b8 Engine::Resize(WindowResizeEvent& event)
+    {
+        mApplication->Resize(event.GetWidth(), event.GetHeight());
+        return false;
+    }
+
+    b8 Engine::Stop()
+    {
+        mRunning = false;
+        return false;
+    }
 } // namespace Pixa

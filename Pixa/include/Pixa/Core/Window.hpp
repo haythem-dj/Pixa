@@ -10,11 +10,9 @@ namespace Pixa
         u32 Height;
         str Title;
 
-        WindowProps()
-            :Width(600), Height(600), Title("Pixa Engine")
-        {}
+        WindowProps() : Width(600), Height(600), Title("Pixa Engine") {}
     };
-    
+
     class PIXA_API Window
     {
     public:
@@ -27,12 +25,11 @@ namespace Pixa
         void SwapBuffers() const;
 
         const WindowProps& GetWindowProps() const { return mWindowProps; }
-    
+
     private:
         void* mWindow = nullptr;
         void* mContext = nullptr;
 
         WindowProps mWindowProps;
-    
     };
-}
+} // namespace Pixa

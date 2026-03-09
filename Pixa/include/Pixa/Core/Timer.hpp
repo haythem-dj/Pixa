@@ -10,7 +10,7 @@ namespace Pixa
     {
         using Clock = std::chrono::high_resolution_clock;
         using TimePoint = std::chrono::time_point<Clock>;
-        
+
     public:
         Timer();
         ~Timer();
@@ -24,6 +24,5 @@ namespace Pixa
 
     private:
         TimePoint mStart;
-    
     };
-}
+} // namespace Pixa

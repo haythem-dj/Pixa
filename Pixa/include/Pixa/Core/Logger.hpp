@@ -10,7 +10,12 @@ namespace Pixa
 {
     enum class LogType
     {
-        Trace, Info, Debug, Warn, Error, Fatal
+        Trace,
+        Info,
+        Debug,
+        Warn,
+        Error,
+        Fatal
     };
 
     class PIXA_API Logger
@@ -19,7 +24,7 @@ namespace Pixa
         Logger(const str& name);
         ~Logger();
 
-        template<typename... Args>
+        template <typename... Args>
         void Log(LogType logType, spdlog::format_string_t<Args...> message, Args&&... args) const
         {
             switch (logType)
@@ -31,11 +36,11 @@ namespace Pixa
             case LogType::Debug:
                 mLogger->debug(message, std::forward<Args>(args)...);
                 break;
-                
+
             case LogType::Info:
                 mLogger->info(message, std::forward<Args>(args)...);
                 break;
-                
+
             case LogType::Warn:
                 mLogger->warn(message, std::forward<Args>(args)...);
                 break;
@@ -43,20 +48,18 @@ namespace Pixa
             case LogType::Error:
                 mLogger->error(message, std::forward<Args>(args)...);
                 break;
-                
+
             case LogType::Fatal:
                 mLogger->critical(message, std::forward<Args>(args)...);
                 break;
-
             }
-    }
+        }
 
     private:
         str mName;
         std::shared_ptr<spdlog::logger> mLogger = nullptr;
-        
     };
-}
+} // namespace Pixa
 
 #define PIXA_TRACE(...) ::Pixa::Engine::GetInstance().GetLogger().Log(::Pixa::LogType::Trace, __VA_ARGS__)
 #define PIXA_DEBUG(...) ::Pixa::Engine::GetInstance().GetLogger().Log(::Pixa::LogType::Debug, __VA_ARGS__)
