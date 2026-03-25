@@ -7,6 +7,7 @@ target_link_libraries(Pixa
         SDL3::SDL3
         glm
         spdlog
+        fmt
     PUBLIC
         glad
         stb_image

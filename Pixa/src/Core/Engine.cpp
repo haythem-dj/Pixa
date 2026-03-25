@@ -3,6 +3,9 @@
 #include "Pixa/Core/Application.hpp"
 #include "Pixa/Core/Engine.hpp"
 
+#include "Pixa/Events/Event.hpp"
+#include "Pixa/Events/WindowEvents.hpp"
+
 #include <glad/glad.h>
 
 namespace Pixa

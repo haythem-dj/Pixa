@@ -1,3 +1,4 @@
-add_executable(SandBox Main.cpp)
-find_package(fmt REQUIRED)
-target_link_libraries(SandBox PRIVATE Pixa fmt::fmt)
+file(GLOB_RECURSE SANDBOX_SRCS src/*.cpp)
+
+add_executable(SandBox ${SANDBOX_SRCS})
+target_link_libraries(SandBox PRIVATE Pixa)

@@ -4,7 +4,7 @@
 
 namespace Pixa
 {
-    enum class EventType
+    enum class PIXA_API EventType
     {
         None = 0,
 
@@ -20,20 +20,20 @@ namespace Pixa
         WindowResize
     };
 
-    class Event
+    class PIXA_API Event
     {
         friend class EventDispatcher;
 
     public:
         Event() = default;
         virtual ~Event() = default;
-        virtual EventType GetType() const;
+        virtual EventType GetType() const = 0;
 
     private:
         b8 mHandled = false;
     };
 
-    class EventDispatcher
+    class PIXA_API EventDispatcher
     {
     public:
         EventDispatcher(Event& e) : mEvent(e) {}

@@ -7,15 +7,16 @@
 #include "Pixa/Core/Timer.hpp"
 #include "Pixa/Core/Window.hpp"
 
-#include "Pixa/Events/Event.hpp"
-#include "Pixa/Events/WindowEvents.hpp"
-
 #include "Pixa/Graphics/Renderer.hpp"
 
 #include <memory>
 
 namespace Pixa
 {
+    class Event;
+    class WindowResizeEvent;
+    class WindowCloseEvent;
+
     class PIXA_API Engine
     {
     public:
